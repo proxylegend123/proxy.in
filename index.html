@@ -1,46 +1,280 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First Website</title>
-</head><style>
-body {
-    background-color: black;
-    color: white;
-    text-align: center;
-    font-family: Arial;
-}
-
-h1 {
-    color: orange;
-}
-
-button {
-    background-color: orange;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080a09" />
+  <meta name="description" content="PROXY EDITS — photo editing, cinematic edits, video editing, posters and reels." />
+  <title>PROXY EDITS — Visuals with an Edge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080a09; --panel: #101411; --panel2: #151b17;
+      --text: #f1f4f0; --muted: #9aa49d; --line: rgba(220,235,224,.13);
+      --green: #b6ff45; --silver: #c5cec8; --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: Manrope, sans-serif; overflow-x: hidden; }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:.13;
+      background-image: radial-gradient(rgba(210,230,215,.32) .55px, transparent .55px); background-size: 5px 5px; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 42px)); margin: auto; }
+    .mono { font-family: "DM Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+    .topbar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(18px); background: rgba(8,10,9,.82); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 76px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { font-weight:800; letter-spacing:.16em; font-size:15px; }
+    .brand span { color:var(--green); }
+    .navlinks { display:flex; align-items:center; gap:27px; color:var(--silver); font-size:12px; }
+    .navlinks a { transition: color .2s; } .navlinks a:hover { color:var(--green); }
+    .nav-cta, .btn { display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--green); color:#0a0d08; background:var(--green); padding:12px 18px; border-radius:3px; font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; transition:transform .2s, box-shadow .2s; }
+    .nav-cta:hover, .btn:hover { transform:translateY(-3px); box-shadow:0 8px 30px rgba(182,255,69,.18); }
+    .btn.outline { background:transparent; color:var(--text); border-color:var(--line); }
+    .hero { min-height: min(790px, calc(100svh - 76px)); display:flex; align-items:center; position:relative; padding:95px 0 105px; overflow:hidden; }
+    .hero::after { content:""; position:absolute; width:540px; height:540px; right:-100px; top:8%; border:1px solid rgba(182,255,69,.18); border-radius:50%; box-shadow:0 0 0 55px rgba(182,255,69,.025), 0 0 0 110px rgba(182,255,69,.018); pointer-events:none; }
+    .hero-grid { position:relative; z-index:1; display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center; width:100%; }
+    .eyebrow { color:var(--green); font-size:10px; margin-bottom:25px; }
+    h1 { margin:0; font-size:clamp(54px, 10vw, 128px); line-height:.88; letter-spacing:-.085em; font-weight:800; }
+    h1 .stroke { color:transparent; -webkit-text-stroke:1px var(--silver); }
+    .hero-sub { color:var(--muted); max-width:480px; line-height:1.8; font-size:14px; margin:28px 0 30px; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; }
+    .hero-side { border:1px solid var(--line); background:linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.01)); padding:28px; min-height:300px; display:flex; flex-direction:column; justify-content:space-between; position:relative; }
+    .hero-side::before { content:""; position:absolute; width:9px; height:9px; background:var(--green); right:22px; top:22px; box-shadow:0 0 22px var(--green); }
+    .orb { width:130px; height:130px; margin:10px auto 18px; border-radius:50%; border:1px solid rgba(182,255,69,.6); background:radial-gradient(circle at 35% 30%, rgba(182,255,69,.32), transparent 55%), #111812; box-shadow:inset 0 0 45px rgba(182,255,69,.12), 0 0 60px rgba(182,255,69,.08); display:grid; place-items:center; font-size:38px; color:var(--green); }
+    .side-note { color:var(--muted); font-size:11px; line-height:1.7; }
+    .side-note strong { display:block; color:var(--text); font-size:13px; margin-bottom:5px; }
+    .marquee { border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; padding:15px 0; color:var(--silver); white-space:nowrap; }
+    .marquee-track { display:inline-block; animation: marquee 28s linear infinite; font-size:10px; }
+    .marquee span { color:var(--green); padding:0 25px; }
+    @keyframes marquee { to { transform:translateX(-50%); } }
+    section { padding:105px 0; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:38px; }
+    .kicker { color:var(--green); font-size:10px; margin-bottom:13px; }
+    h2 { font-size:clamp(34px, 5vw, 58px); line-height:1; letter-spacing:-.06em; margin:0; }
+    .section-desc { color:var(--muted); font-size:12px; line-height:1.8; max-width:330px; }
+    .filters { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+    .filter { border:1px solid var(--line); background:transparent; color:var(--muted); padding:10px 15px; cursor:pointer; font-size:10px; text-transform:uppercase; letter-spacing:.1em; }
+    .filter.active, .filter:hover { border-color:var(--green); color:var(--green); }
+    .work-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; align-items:start; }
+    .work-card { min-width:0; background:var(--panel); border:1px solid var(--line); padding:12px; transition:transform .25s, border-color .25s; }
+    .work-card:hover { transform:translateY(-5px); border-color:rgba(182,255,69,.5); }
+    .work-card.hidden { display:none; }
+    .work-top { display:flex; justify-content:space-between; gap:10px; margin:2px 2px 12px; color:var(--muted); font-size:9px; }
+    .work-top b { color:var(--green); font-weight:500; }
+    .embed-shell { min-height:220px; background:#0a0d0b; display:flex; justify-content:center; align-items:flex-start; overflow:hidden; }
+    .instagram-media { margin:0 auto !important; min-width:0 !important; max-width:100% !important; width:100% !important; background:#0a0d0b !important; border:0 !important; }
+    .embed-fallback { display:flex; align-items:center; justify-content:center; min-height:220px; width:100%; color:var(--silver); font-size:11px; text-align:center; padding:20px; line-height:1.8; }
+    .embed-fallback a { color:var(--green); text-decoration:underline; }
+    .rating { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 2px 2px; color:var(--muted); font-size:10px; }
+    .stars { display:flex; gap:3px; }
+    .star { border:0; background:transparent; color:#68716b; cursor:pointer; font-size:20px; line-height:1; padding:0 1px; }
+    .star.selected, .star:hover { color:var(--green); }
+    .rating small { display:block; font-size:9px; color:#77827a; margin-top:3px; }
+    .services { display:grid; grid-template-columns:repeat(5,1fr); border:1px solid var(--line); }
+    .service { padding:25px 18px; border-right:1px solid var(--line); min-height:180px; background:linear-gradient(145deg,rgba(255,255,255,.035),transparent); }
+    .service:last-child { border:0; }
+    .service-num { color:var(--green); font-size:10px; }
+    .service h3 { font-size:15px; line-height:1.3; margin:36px 0 8px; }
+    .service p { font-size:10px; color:var(--muted); line-height:1.7; margin:0; }
+    .about-grid { display:grid; grid-template-columns:.7fr 1.3fr; gap:65px; align-items:start; }
+    .about-mark { border:1px solid var(--line); min-height:270px; display:grid; place-items:center; background:radial-gradient(circle,rgba(182,255,69,.1),transparent 65%); }
+    .about-mark span { font-size:76px; font-weight:800; letter-spacing:-.1em; color:transparent; -webkit-text-stroke:1px var(--green); }
+    .about-copy p { color:var(--muted); font-size:14px; line-height:1.9; max-width:650px; }
+    .signature { margin-top:30px; color:var(--silver); font-size:12px; }
+    .signature span { color:var(--green); }
+    .contact { background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+    .contact-links { display:grid; gap:10px; }
+    .contact-link { display:flex; justify-content:space-between; gap:15px; align-items:center; padding:18px 20px; border:1px solid var(--line); color:var(--silver); font-size:12px; transition:border-color .2s,color .2s; }
+    .contact-link:hover { border-color:var(--green); color:var(--green); }
+    .contact-link span:last-child { color:var(--green); }
+    footer { padding:28px 0; color:var(--muted); font-size:9px; }
+    .footer-row { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+    .intro { animation: introIn 1.1s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes introIn { from { opacity:0; transform:translateY(28px); letter-spacing:-.12em; } to { opacity:1; transform:none; } }
+    @media (max-width:900px) {
+      .hero-grid { grid-template-columns:1fr; } .hero-side { max-width:500px; min-height:230px; }
+      .services { grid-template-columns:repeat(2,1fr); } .service:nth-child(2n) { border-right:0; } .service:last-child { grid-column:span 2; border-top:1px solid var(--line); }
+      .work-grid { grid-template-columns:repeat(2,1fr); } .about-grid { gap:30px; }
+    }
+    @media (max-width:620px) {
+      .wrap { width:min(100% - 28px, var(--max)); }
+      .nav { min-height:66px; } .navlinks { gap:13px; font-size:10px; } .navlinks a:nth-child(2) { display:none; } .nav-cta { padding:10px 11px; font-size:9px; }
+      .hero { padding:80px 0; min-height:auto; } .hero::after { width:300px; height:300px; right:-170px; top:20%; }
+      .hero-sub { font-size:13px; } section { padding:76px 0; }
+      .section-head { display:block; } .section-desc { margin-top:18px; }
+      .work-grid { grid-template-columns:1fr; gap:13px; } .embed-shell,.embed-fallback { min-height:180px; }
+      .services { grid-template-columns:1fr 1fr; } .service { min-height:155px; padding:20px 14px; } .service h3 { margin-top:27px; }
+      .about-grid,.contact-grid { grid-template-columns:1fr; gap:28px; } .about-mark { min-height:190px; } .about-mark span { font-size:60px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; } }
+  </style>
+</head>
 <body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#home">PROXY <span>EDITS</span></a>
+      <nav class="navlinks mono" aria-label="Main navigation">
+        <a href="#works">Works</a><a href="#services">Services</a><a href="#about">About</a>
+      </nav>
+      <a class="nav-cta mono" href="#contact">Let's create ↗</a>
+    </div>
+  </header>
 
-    <h1>welcome to proxys World!</h1>
-    <p>kuninj nikku machu.</p>
-    <h2>ente websitel keriya ellarum umb</h2>
-    
-<button onclick="showPhoto()">Click Me</button>
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow mono intro">Independent visual editor · Est. 2026</div>
+          <h1 class="intro">PROXY<br><span class="stroke">EDITS.</span></h1>
+          <p class="hero-sub intro">Turning ordinary frames into visuals with character. Photo edits, cinematic looks, videos and designs — made to stand out.</p>
+          <div class="hero-actions intro">
+            <a class="btn mono" href="#works">Explore works ↘</a>
+            <a class="btn outline mono" href="https://wa.me/919747307605" target="_blank" rel="noopener">Start a project ↗</a>
+          </div>
+        </div>
+        <aside class="hero-side intro">
+          <div class="mono" style="font-size:9px;color:var(--muted)">Visual department / 001</div>
+          <div class="orb">PX</div>
+          <div class="side-note"><strong>MAKE IT MEMORABLE.</strong>Creative edits. Clean details. A distinct visual identity.</div>
+        </aside>
+      </div>
+    </section>
 
-<div id="photo" style="display:none;">
-    <h2>This is Me!</h2>
-    <img src="avinash.jpg" width="200">
-</div>
+    <div class="marquee mono" aria-hidden="true"><div class="marquee-track">
+      PHOTO EDITING <span>✳</span> CINEMATIC VISUALS <span>✳</span> VIDEO EDITING <span>✳</span> POSTER DESIGN <span>✳</span> REELS <span>✳</span>
+      PHOTO EDITING <span>✳</span> CINEMATIC VISUALS <span>✳</span> VIDEO EDITING <span>✳</span> POSTER DESIGN <span>✳</span> REELS <span>✳</span>
+    </div></div>
 
-<script>
-function showPhoto() {
-    document.getElementById("photo").style.display = "block";
-}
-</script>
+    <section id="works">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><div class="kicker mono">01 / Selected work</div><h2>THE GALLERY<span style="color:var(--green)">.</span></h2></div>
+          <p class="section-desc">A selection of edits from the PROXY EDITS feed. Open any post to view it on Instagram.</p>
+        </div>
+        <div class="filters reveal" role="group" aria-label="Filter works">
+          <button class="filter active mono" data-filter="all">All works</button>
+          <button class="filter mono" data-filter="photo">Photo</button>
+          <button class="filter mono" data-filter="video">Video</button>
+        </div>
+        <div class="work-grid" id="workGrid">
+          <!-- Instagram embeds are supplied by Instagram. If an embed does not load, use its Open on Instagram link. -->
+          <article class="work-card reveal" data-type="photo"><div class="work-top mono"><b>WORK 01</b><span>PHOTO EDIT</span></div><div class="embed-shell"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Db27tE3Tx8I/" data-instgrm-version="14"><div class="embed-fallback">View this edit on <a href="https://www.instagram.com/p/Db27tE3Tx8I/" target="_blank" rel="noopener">Instagram ↗</a></div></blockquote></div><div class="rating" data-id="work01"><div>Rate this work<small class="rating-note">Your rating stays on this device</small></div><div class="stars" aria-label="Rate work 1 to 5"></div></div></article>
+          <article class="work-card reveal" data-type="photo"><div class="work-top mono"><b>WORK 02</b><span>PHOTO EDIT</span></div><div class="embed-shell"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DdyvKDIk4jG/" data-instgrm-version="14"><div class="embed-fallback">View this edit on <a href="https://www.instagram.com/p/DdyvKDIk4jG/" target="_blank" rel="noopener">Instagram ↗</a></div></blockquote></div><div class="rating" data-id="work02"><div>Rate this work<small class="rating-note">Your rating stays on this device</small></div><div class="stars"></div></div></article>
+          <article class="work-card reveal" data-type="photo"><div class="work-top mono"><b>WORK 03</b><span>PHOTO EDIT</span></div><div class="embed-shell"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dd335NhzkvI/" data-instgrm-version="14"><div class="embed-fallback">View this edit on <a href="https://www.instagram.com/p/Dd335NhzkvI/" target="_blank" rel="noopener">Instagram ↗</a></div></blockquote></div><div class="rating" data-id="work03"><div>Rate this work<small class="rating-note">Your rating stays on this device</small></div><div class="stars"></div></div></article>
+          <article class="work-card reveal" data-type="photo"><div class="work-top mono"><b>WORK 04</b><span>PHOTO EDIT</span></div><div class="embed-shell"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DeUIsuJE1Su/" data-instgrm-version="14"><div class="embed-fallback">View this edit on <a href="https://www.instagram.com/p/DeUIsuJE1Su/" target="_blank" rel="noopener">Instagram ↗</a></div></blockquote></div><div class="rating" data-id="work04"><div>Rate this work<small class="rating-note">Your rating stays on this device</small></div><div class="stars"></div></div></article>
+          <article class="work-card reveal" data-type="photo"><div class="work-top mono"><b>WORK 05</b><span>PHOTO EDIT</span></div><div class="embed-shell"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DdQqjiGzlGZ/" data-instgrm-version="14"><div class="embed-fallback">View this edit on <a href="https://www.instagram.com/p/DdQqjiGzlGZ/" target="_blank" rel="noopener">Instagram ↗</a></div></blockquote></div><div class="rating" data-id="work05"><div>Rate this work<small class="rating-note">Your rating stays on this device</small></div><div class="stars"></div></div></article>
+          <article class="work-card reveal" data-type="photo"><div class="work-top mono"><b>WORK 06</b><span>PHOTO EDIT</span></div><div class="embed-shell"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DbqktajT9iS/" data-instgrm-version="14"><div class="embed-fallback">View this edit on <a href="https://www.instagram.com/p/DbqktajT9iS/" target="_blank" rel="noopener">Instagram ↗</a></div></blockquote></div><div class="rating" data-id="work06"><div>Rate this work<small class="rating-note">Your rating stays on this device</small></div><div class="stars"></div></div></article>
+          <article class="work-card reveal" data-type="photo"><div class="work-top mono"><b>WORK 07</b><span>PHOTO EDIT</span></div><div class="embed-shell"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dbn1EXozNVy/" data-instgrm-version="14"><div class="embed-fallback">View this edit on <a href="https://www.instagram.com/p/Dbn1EXozNVy/" target="_blank" rel="noopener">Instagram ↗</a></div></blockquote></div><div class="rating" data-id="work07"><div>Rate this work<small class="rating-note">Your rating stays on this device</small></div><div class="stars"></div></div></article>
+          <article class="work-card reveal" data-type="photo"><div class="work-top mono"><b>WORK 08</b><span>PHOTO EDIT</span></div><div class="embed-shell"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWt7Rzikyif/" data-instgrm-version="14"><div class="embed-fallback">View this edit on <a href="https://www.instagram.com/p/DWt7Rzikyif/" target="_blank" rel="noopener">Instagram ↗</a></div></blockquote></div><div class="rating" data-id="work08"><div>Rate this work<small class="rating-note">Your rating stays on this device</small></div><div class="stars"></div></div></article>
+          <article class="work-card reveal" data-type="photo"><div class="work-top mono"><b>WORK 09</b><span>PHOTO EDIT</span></div><div class="embed-shell"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWMdfjhk-kr/" data-instgrm-version="14"><div class="embed-fallback">View this edit on <a href="https://www.instagram.com/p/DWMdfjhk-kr/" target="_blank" rel="noopener">Instagram ↗</a></div></blockquote></div><div class="rating" data-id="work09"><div>Rate this work<small class="rating-note">Your rating stays on this device</small></div><div class="stars"></div></div></article>
+          <article class="work-card reveal" data-type="photo"><div class="work-top mono"><b>WORK 10</b><span>PHOTO EDIT</span></div><div class="embed-shell"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWMb5oOE86J/" data-instgrm-version="14"><div class="embed-fallback">View this edit on <a href="https://www.instagram.com/p/DWMb5oOE86J/" target="_blank" rel="noopener">Instagram ↗</a></div></blockquote></div><div class="rating" data-id="work10"><div>Rate this work<small class="rating-note">Your rating stays on this device</small></div><div class="stars"></div></div></article>
+          <article class="work-card reveal" data-type="photo"><div class="work-top mono"><b>WORK 11</b><span>PHOTO EDIT</span></div><div class="embed-shell"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWMccJRk5Hh/" data-instgrm-version="14"><div class="embed-fallback">View this edit on <a href="https://www.instagram.com/p/DWMccJRk5Hh/" target="_blank" rel="noopener">Instagram ↗</a></div></blockquote></div><div class="rating" data-id="work11"><div>Rate this work<small class="rating-note">Your rating stays on this device</small></div><div class="stars"></div></div></article>
+          <article class="work-card reveal" data-type="video"><div class="work-top mono"><b>WORK 12</b><span>VIDEO EDIT</span></div><div class="embed-shell"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DdYjyxCzJYe/" data-instgrm-version="14"><div class="embed-fallback">View this reel on <a href="https://www.instagram.com/reel/DdYjyxCzJYe/" target="_blank" rel="noopener">Instagram ↗</a></div></blockquote></div><div class="rating" data-id="work12"><div>Rate this work<small class="rating-note">Your rating stays on this device</small></div><div class="stars"></div></div></article>
+        </div>
+      </div>
+    </section>
 
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head reveal"><div><div class="kicker mono">02 / What I do</div><h2>THE SERVICES<span style="color:var(--green)">.</span></h2></div><p class="section-desc">From a single frame to a complete visual story, let's shape something worth looking at.</p></div>
+        <div class="services reveal">
+          <div class="service"><div class="service-num mono">01 / IMAGE</div><h3>Photo Editing</h3><p>Clean edits with attention to detail.</p></div>
+          <div class="service"><div class="service-num mono">02 / MOOD</div><h3>Cinematic Photo Editing</h3><p>Atmosphere, tone and visual depth.</p></div>
+          <div class="service"><div class="service-num mono">03 / MOTION</div><h3>Video Editing</h3><p>Sharp cuts and a smooth visual flow.</p></div>
+          <div class="service"><div class="service-num mono">04 / DESIGN</div><h3>Poster Designing</h3><p>Bold layouts made to catch attention.</p></div>
+          <div class="service"><div class="service-num mono">05 / SOCIAL</div><h3>Instagram Reels Editing</h3><p>Short-form edits for social media.</p></div>
+        </div>
+      </div>
+    </section>
 
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-mark reveal"><span>PX.</span></div>
+        <div class="about-copy reveal">
+          <div class="kicker mono">03 / Behind the edits</div>
+          <h2>DETAIL IS<br>THE DIFFERENCE<span style="color:var(--green)">.</span></h2>
+          <p>PROXY EDITS is a creative editing space focused on strong visuals, thoughtful details and a clean finish. Every project is a chance to make an idea look its best.</p>
+          <div class="signature mono">Created by <span>AVINASH D.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div class="reveal"><div class="kicker mono">04 / Get in touch</div><h2>HAVE A PROJECT?<br><span style="color:var(--green)">LET'S MAKE IT.</span></h2><p class="section-desc" style="margin-top:22px">For editing enquiries, collaborations or just to connect, reach out here.</p></div>
+        <div class="contact-links reveal">
+          <a class="contact-link" href="https://wa.me/919747307605" target="_blank" rel="noopener"><span>WhatsApp / Enquiries</span><span>↗</span></a>
+          <a class="contact-link" href="https://www.instagram.com/proxy_editsz/" target="_blank" rel="noopener"><span>Instagram / @proxy_editsz</span><span>↗</span></a>
+          <a class="contact-link" href="https://www.instagram.com/a6bhyyy__/" target="_blank" rel="noopener"><span>Instagram / Personal</span><span>↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-row"><span class="mono">© <span id="year"></span> PROXY EDITS</span><span class="mono">VISUALS WITH AN EDGE.</span><span>Made with focus. ✳</span></div></footer>
+
+  <script async src="https://www.instagram.com/embed.js"></script>
+  <script>
+    // Gallery filters
+    const filterButtons = document.querySelectorAll('.filter');
+    const workCards = document.querySelectorAll('.work-card');
+    filterButtons.forEach(button => button.addEventListener('click', () => {
+      filterButtons.forEach(item => item.classList.remove('active'));
+      button.classList.add('active');
+      const filter = button.dataset.filter;
+      workCards.forEach(card => {
+        card.classList.toggle('hidden', filter !== 'all' && card.dataset.type !== filter);
+      });
+    }));
+
+    // Per-browser ratings. These are not public/shared ratings.
+    document.querySelectorAll('.rating').forEach(rating => {
+      const id = rating.dataset.id;
+      const stars = rating.querySelector('.stars');
+      const saved = Number(localStorage.getItem('proxy-rating-' + id) || 0);
+      const note = rating.querySelector('.rating-note');
+      function draw(value) {
+        stars.innerHTML = '';
+        for (let i = 1; i <= 5; i++) {
+          const star = document.createElement('button');
+          star.type = 'button';
+          star.className = 'star' + (i <= value ? ' selected' : '');
+          star.textContent = '★';
+          star.setAttribute('aria-label', 'Rate ' + i + ' out of 5');
+          star.addEventListener('click', () => {
+            localStorage.setItem('proxy-rating-' + id, String(i));
+            draw(i);
+            note.textContent = 'Your rating: ' + i + '/5 · saved on this device';
+          });
+          stars.appendChild(star);
+        }
+      }
+      draw(saved);
+      if (saved) note.textContent = 'Your rating: ' + saved + '/5 · saved on this device';
+    });
+
+    // Subtle reveal animation
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Re-run Instagram's embed parser after the page is ready.
+    window.addEventListener('load', () => {
+      if (window.instgrm && window.instgrm.Embeds) window.instgrm.Embeds.process();
+    });
+  </script>
 </body>
 </html>
